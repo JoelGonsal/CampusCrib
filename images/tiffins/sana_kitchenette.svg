@@ -1,0 +1,13 @@
+<svg width="400" height="300" xmlns="http://www.w3.org/2000/svg">
+  <rect width="400" height="300" fill="#FFF0F5"/>
+  <rect x="60" y="60" width="280" height="180" fill="#DC143C" rx="15"/>
+  <rect x="80" y="80" width="240" height="140" fill="#fff" rx="10"/>
+  <rect x="100" y="100" width="50" height="30" fill="#FF6347" rx="5"/>
+  <rect x="175" y="100" width="50" height="30" fill="#32CD32" rx="5"/>
+  <rect x="250" y="100" width="50" height="30" fill="#FFD700" rx="5"/>
+  <rect x="100" y="150" width="50" height="30" fill="#FF69B4" rx="5"/>
+  <rect x="175" y="150" width="50" height="30" fill="#8A2BE2" rx="5"/>
+  <rect x="250" y="150" width="50" height="30" fill="#FF4500" rx="5"/>
+  <text x="200" y="40" text-anchor="middle" font-family="Arial" font-size="18" fill="#DC143C">🍖</text>
+  <text x="200" y="280" text-anchor="middle" font-family="Arial" font-size="16" font-weight="bold" fill="#333">Sana's Kitchenette</text>
+</svg>

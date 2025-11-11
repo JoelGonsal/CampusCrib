@@ -1,0 +1,13 @@
+node_modules/
+vendor/
+.env
+config.php
+*.env
+*.log
+__pycache__/
+.vscode/
+.idea/
+.DS_Store
+uploads/
+database/*.sql
+

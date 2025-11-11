@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Roommates Simple</title>
+    <style>
+        .roommate-card {
+            border: 1px solid #ccc;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Test Roommates Loading</h1>
+    <div id="loadingState">Loading...</div>
+    <div id="roommateListings" style="display: none;"></div>
+    <div id="noResults" style="display: none;">No roommates found</div>
+    
+    <script>
+        async function loadRoommates() {
+            console.log('Loading roommates...');
+            
+            const loadingState = document.getElementById('loadingState');
+            const roommateListings = document.getElementById('roommateListings');
+            const noResults = document.getElementById('noResults');
+            
+            try {
+                const response = await fetch('http://localhost:3000/api/roommates');
+                console.log('Response status:', response.status);
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                
+                const roommates = await response.json();
+                console.log('Loaded roommates:', roommates.length, roommates);
+                
+                loadingState.style.display = 'none';
+                
+                if (roommates.length === 0) {
+                    noResults.style.display = 'block';
+                } else {
+                    roommateListings.style.display = 'block';
+                    roommateListings.innerHTML = roommates.map(roommate => `
+                        <div class="roommate-card">
+                            <h3>${roommate.full_name || 'Anonymous'}</h3>
+                            <p>Looking for: ${roommate.looking_for_gender}</p>
+                            <p>Location: ${roommate.preferred_location}</p>
+                            <p>Budget: ₹${roommate.budget_max}</p>
+                            <p>Course: ${roommate.course || 'N/A'}</p>
+                        </div>
+                    `).join('');
+                }
+            } catch (error) {
+                console.error('Error loading roommates:', error);
+                loadingState.innerHTML = `Error: ${error.message}`;
+            }
+        }
+        
+        // Load on page load
+        document.addEventListener('DOMContentLoaded', loadRoommates);
+    </script>
+</body>
+</html>

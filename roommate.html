@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Roommates | CampusCrib</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="modern-style.css">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            'sans': ['Inter', 'system-ui', 'sans-serif'],
+            'display': ['Poppins', 'system-ui', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="font-sans bg-gradient-to-br from-purple-50 via-white to-pink-50 text-gray-900">
+  <!-- Navbar -->
+  <nav class="navbar-modern sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="nav-container flex justify-between items-center h-18 py-2">
+        <div class="flex items-center">
+          <div class="logo-container">
+            <div class="text-2xl font-display logo-text">
+              CampusCrib
+            </div>
+          </div>
+        </div>
+        
+        <div class="hidden md:block nav-links">
+          <div class="flex items-center space-x-1">
+            <a href="index.html" class="nav-link text-gray-600">
+              <span>Home</span>
+            </a>
+            <a href="pgs.html" class="nav-link text-gray-600">
+              <span>PGs/Flats</span>
+            </a>
+            <a href="tiffen.html" class="nav-link text-gray-600">
+              <span>Tiffin</span>
+            </a>
+            <a href="roommate.html" class="nav-link active text-purple-600">
+              <span>Roommates</span>
+            </a>
+            <a href="contact.html" class="nav-link text-gray-600">
+              <span>Contact</span>
+            </a>
+          </div>
+        </div>
+        
+        <div class="auth-buttons" id="authButtons">
+          <a href="login.html" class="btn-login text-gray-600">
+            Login
+          </a>
+          <a href="register.html" class="btn-register">
+            Get Started
+          </a>
+        </div>
+
+        <!-- Mobile menu button -->
+        <button class="mobile-menu-btn md:hidden">
+          <svg class="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <div class="min-h-screen bg-gradient-to-br from-purple-600 via-pink-600 to-red-500">
+    <!-- Roommate Section -->
+    <section class="pt-36 pb-20 px-10 text-center">
+      <h1 class="text-4xl font-bold mb-6 text-white drop-shadow-lg">Find a Roommate Near NMIMS</h1>
+      <p class="text-lg text-white mb-12 drop-shadow">Connect with verified students looking for roommates in Mumbai</p>
+
+      <!-- Search and Filters -->
+      <div class="mb-8 max-w-4xl mx-auto">
+        <div class="flex flex-col md:flex-row gap-4 mb-6">
+          <input
+            type="text"
+            id="searchInput"
+            placeholder="Search by location or name..."
+            class="flex-1 px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-400"
+          />
+          <select id="genderFilter" class="px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-400">
+            <option value="">All Genders</option>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+            <option value="any">Any</option>
+          </select>
+          <select id="budgetFilter" class="px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-400">
+            <option value="">All Budgets</option>
+            <option value="0-8000">Under ₹8,000</option>
+            <option value="8000-15000">₹8,000 - ₹15,000</option>
+            <option value="15000-25000">₹15,000 - ₹25,000</option>
+            <option value="25000-999999">Above ₹25,000</option>
+          </select>
+        </div>
+        
+        <!-- Add New Roommate Request Button (for logged in users) -->
+        <div id="addRoommateButton" class="hidden mb-6">
+          <a href="add-roommate.html" class="bg-purple-600 text-white px-6 py-3 rounded-lg hover:bg-purple-700 transition duration-300 inline-flex items-center gap-2">
+            <span>+</span> Post Roommate Request
+          </a>
+        </div>
+      </div>
+
+      <!-- Loading State -->
+      <div id="loadingState" class="text-white text-center py-8">
+        <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-white mx-auto mb-4"></div>
+        <p>Loading roommate requests...</p>
+      </div>
+
+      <!-- Roommate Listings Grid -->
+      <div id="roommateListings" class="grid md:grid-cols-2 lg:grid-cols-3 gap-10 hidden">
+        <!-- Dynamic content will be loaded here -->
+      </div>
+
+      <!-- No Results -->
+      <div id="noResults" class="text-white text-center py-8 hidden">
+        <div class="text-6xl mb-4">👫</div>
+        <h3 class="text-2xl font-bold mb-2">No Roommate Requests Found</h3>
+        <p class="text-lg">Try adjusting your search filters or check back later for new requests.</p>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="text-center bg-gray-800 text-gray-300 py-6">
+      <div class="space-y-2">
+        <p class="font-semibold text-white text-lg">CampusCrib</p>
+        <p>📍 Santacruz West, Milan Subway</p>
+        <p>📞 <a href="tel:+918827007325" class="hover:underline">8827007325</a></p>
+        <p>📧 <a href="mailto:soniakshofc@gmail.com" class="hover:underline">soniakshofc@gmail.com</a></p>
+        <div class="flex justify-center gap-6 mt-2">
+          <a href="https://x.com/_akshhh27?t=UuJIWFn7OHzQ1CehR_oiCw&s=08" target="_blank" class="hover:underline text-blue-400">Instagram</a>
+          <a href="https://www.linkedin.com/in/aksh-soni-9b6a81281?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank" class="hover:underline text-blue-400">LinkedIn</a>
+        </div>
+        <p class="mt-4">&copy; 2025 CampusCrib by Aksh. Made with ❤️ for NMIMS Students.</p>
+      </div>
+    </footer>
+
+  </div>
+
+  <script src="js/auth.js"></script>
+  <script src="js/script.js"></script>
+  <script src="js/roommates.js"></script>
+</body>
+</html>

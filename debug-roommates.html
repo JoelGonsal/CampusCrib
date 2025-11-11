@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Debug Roommates</title>
+</head>
+<body>
+    <h1>Debug Roommates</h1>
+    <div id="debug-info"></div>
+    <button onclick="testRoommates()">Test Roommates API</button>
+    
+    <script>
+        async function testRoommates() {
+            try {
+                console.log('Testing roommates API...');
+                
+                const response = await fetch('http://localhost:3000/api/roommates');
+                console.log('Response status:', response.status);
+                console.log('Response ok:', response.ok);
+                
+                const data = await response.json();
+                console.log('Response data:', data);
+                
+                document.getElementById('debug-info').innerHTML = `
+                    <h3>Roommates API Test:</h3>
+                    <p>Status: ${response.status}</p>
+                    <p>Success: ${response.ok}</p>
+                    <p>Data count: ${Array.isArray(data) ? data.length : 'Not array'}</p>
+                    <pre>${JSON.stringify(data, null, 2)}</pre>
+                `;
+            } catch (error) {
+                console.error('Error:', error);
+                document.getElementById('debug-info').innerHTML = `
+                    <h3>Error:</h3>
+                    <p>${error.message}</p>
+                `;
+            }
+        }
+        
+        // Auto-test on load
+        window.onload = testRoommates;
+    </script>
+</body>
+</html>

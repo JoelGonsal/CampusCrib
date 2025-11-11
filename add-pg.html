@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add PG/Flat | CampusCrib</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="modern-style.css">
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              'sans': ['Inter', 'system-ui', 'sans-serif'],
+              'display': ['Poppins', 'system-ui', 'sans-serif'],
+            }
+          }
+        }
+      }
+    </script>
+</head>
+<body class="font-sans bg-gradient-to-br from-blue-50 via-white to-purple-50 min-h-screen">
+    <!-- Navbar -->
+    <nav class="navbar-modern sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="nav-container flex justify-between items-center h-18 py-2">
+                <div class="flex items-center">
+                    <div class="logo-container">
+                        <div class="text-2xl font-display logo-text">
+                            CampusCrib
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="hidden md:block nav-links">
+                    <div class="flex items-center space-x-1">
+                        <a href="index.html" class="nav-link text-gray-600">
+                            <span>Home</span>
+                        </a>
+                        <a href="pgs.html" class="nav-link active text-blue-600">
+                            <span>PGs/Flats</span>
+                        </a>
+                        <a href="tiffen.html" class="nav-link text-gray-600">
+                            <span>Tiffin</span>
+                        </a>
+                        <a href="roommate.html" class="nav-link text-gray-600">
+                            <span>Roommates</span>
+                        </a>
+                        <a href="contact.html" class="nav-link text-gray-600">
+                            <span>Contact</span>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="flex items-center gap-3" id="authButtons">
+                    <a href="dashboard.html" class="bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white px-4 py-2 rounded-lg font-medium transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105">
+                        Dashboard
+                    </a>
+                    <button onclick="logout()" class="bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white px-4 py-2 rounded-lg font-medium transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105">
+                        Logout
+                    </button>
+                </div>
+
+                <!-- Mobile menu button -->
+                <button class="mobile-menu-btn md:hidden">
+                    <svg class="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+            </div>
+        </div>
+    </nav>
+
+    <!-- Add PG Form -->
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div class="backdrop-blur-xl bg-white/90 border border-white/20 p-8 rounded-2xl shadow-2xl">
+            <div class="text-center mb-8">
+                <h1 class="text-4xl font-display font-bold text-gray-900 mb-2">Add Your PG/Flat</h1>
+                <p class="text-gray-600">Share your space with fellow students</p>
+            </div>
+                    
+                    <form id="addPGForm" class="space-y-6">
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Property Title *</label>
+                                <input type="text" id="title" required 
+                                       placeholder="e.g., Skyview PG, Andheri West"
+                                       class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            </div>
+                            
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Property Type *</label>
+                                <select id="propertyType" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                    <option value="">Select Property Type</option>
+                                    <option value="pg">PG</option>
+                                    <option value="flat">Flat</option>
+                                    <option value="1rk">1RK</option>
+                                    <option value="1bhk">1BHK</option>
+                                    <option value="2bhk">2BHK</option>
+                                    <option value="3bhk">3BHK</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Location *</label>
+                                <input type="text" id="location" required 
+                                       placeholder="e.g., Andheri West"
+                                       class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            </div>
+                            
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Area/Locality *</label>
+                                <input type="text" id="area" required 
+                                       placeholder="e.g., Near NMIMS Gate"
+                                       class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            </div>
+                        </div>
+                        
+                        <div class="grid md:grid-cols-3 gap-6">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Monthly Rent (₹) *</label>
+                                <input type="number" id="rentAmount" required min="1000" 
+                                       placeholder="e.g., 12000"
+                                       class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            </div>
+                            
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Sharing Type *</label>
+                                <select id="sharingType" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                    <option value="">Select Sharing</option>
+                                    <option value="single">Single Room</option>
+                                    <option value="2_sharing">2 Sharing</option>
+                                    <option value="3_sharing">3 Sharing</option>
+                                    <option value="4_sharing">4 Sharing</option>
+                                </select>
+                            </div>
+                            
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Gender Preference</label>
+                                <select id="genderPreference" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                    <option value="any">Any</option>
+                                    <option value="male">Male Only</option>
+                                    <option value="female">Female Only</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Description</label>
+                            <textarea id="description" rows="4" 
+                                      placeholder="Describe your property, nearby facilities, rules, etc."
+                                      class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
+                        </div>
+                        
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Contact Number *</label>
+                                <input type="tel" id="contactNumber" required 
+                                       placeholder="e.g., 9876543210"
+                                       class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            </div>
+                            
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">WhatsApp Number</label>
+                                <input type="tel" id="whatsappNumber" 
+                                       placeholder="e.g., 9876543210"
+                                       class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            </div>
+                        </div>
+                        
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Distance from NMIMS</label>
+                                <input type="text" id="distanceFromCollege" 
+                                       placeholder="e.g., 500m walking, 2km by bus"
+                                       class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            </div>
+                            
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Available From</label>
+                                <input type="date" id="availableFrom" 
+                                       class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Amenities</label>
+                            <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+                                <label class="flex items-center">
+                                    <input type="checkbox" value="WiFi" class="amenity-checkbox mr-2">
+                                    <span class="text-sm">WiFi</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" value="AC" class="amenity-checkbox mr-2">
+                                    <span class="text-sm">AC</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" value="Meals" class="amenity-checkbox mr-2">
+                                    <span class="text-sm">Meals</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" value="Laundry" class="amenity-checkbox mr-2">
+                                    <span class="text-sm">Laundry</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" value="Parking" class="amenity-checkbox mr-2">
+                                    <span class="text-sm">Parking</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" value="Security" class="amenity-checkbox mr-2">
+                                    <span class="text-sm">Security</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" value="Gym" class="amenity-checkbox mr-2">
+                                    <span class="text-sm">Gym</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" value="Common Area" class="amenity-checkbox mr-2">
+                                    <span class="text-sm">Common Area</span>
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Property Images</label>
+                            <div class="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center hover:border-blue-400 transition-colors">
+                                <input type="file" id="imageUpload" multiple accept="image/*" class="hidden" onchange="handleImageUpload(event)">
+                                <div id="uploadArea" onclick="document.getElementById('imageUpload').click()" class="cursor-pointer">
+                                    <div class="text-gray-400 mb-2">
+                                        <svg class="mx-auto h-12 w-12" stroke="currentColor" fill="none" viewBox="0 0 48 48">
+                                            <path d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                        </svg>
+                                    </div>
+                                    <p class="text-sm text-gray-600">Click to upload images or drag and drop</p>
+                                    <p class="text-xs text-gray-400 mt-1">PNG, JPG, GIF up to 5MB each (Max 5 images)</p>
+                                </div>
+                                <div id="imagePreview" class="mt-4 grid grid-cols-2 md:grid-cols-3 gap-4 hidden"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="flex gap-4">
+                            <button type="submit" class="flex-1 bg-blue-600 text-white py-3 px-6 rounded-lg hover:bg-blue-700 transition duration-300 font-medium">
+                                Post PG Listing
+                            </button>
+                            <a href="dashboard.html" class="flex-1 bg-gray-600 text-white py-3 px-6 rounded-lg hover:bg-gray-700 transition duration-300 font-medium text-center">
+                                Cancel
+                            </a>
+                        </div>
+                    </form>
+                    
+                    <div id="message" class="mt-4 p-3 rounded hidden"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="js/auth.js"></script>
+    <script src="js/add-pg.js"></script>
+</body>
+</html>

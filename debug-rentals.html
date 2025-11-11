@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Debug Rentals</title>
+</head>
+<body>
+    <h1>Debug Rentals</h1>
+    <div id="debug-info"></div>
+    <button onclick="testLogin()">Test Login</button>
+    <button onclick="testRentals()">Test Rentals</button>
+    <button onclick="checkToken()">Check Token</button>
+    
+    <script>
+        function checkToken() {
+            const token = localStorage.getItem('token');
+            document.getElementById('debug-info').innerHTML = `
+                <h3>Token Check:</h3>
+                <p>Token exists: ${!!token}</p>
+                <p>Token: ${token ? token.substring(0, 50) + '...' : 'None'}</p>
+            `;
+        }
+        
+        async function testLogin() {
+            try {
+                const response = await fetch('http://localhost:3000/api/auth/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        email: 'test@example.com',
+                        password: 'password123'
+                    })
+                });
+                
+                const data = await response.json();
+                console.log('Login response:', data);
+                
+                if (data.token) {
+                    localStorage.setItem('token', data.token);
+                    localStorage.setItem('userData', JSON.stringify(data.user));
+                }
+                
+                document.getElementById('debug-info').innerHTML = `
+                    <h3>Login Test:</h3>
+                    <p>Status: ${response.status}</p>
+                    <p>Success: ${response.ok}</p>
+                    <p>Token: ${data.token ? 'Received' : 'Not received'}</p>
+                    <pre>${JSON.stringify(data, null, 2)}</pre>
+                `;
+            } catch (error) {
+                document.getElementById('debug-info').innerHTML = `
+                    <h3>Login Error:</h3>
+                    <p>${error.message}</p>
+                `;
+            }
+        }
+        
+        async function testRentals() {
+            const token = localStorage.getItem('token');
+            
+            try {
+                const response = await fetch('http://localhost:3000/api/my-rentals', {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                });
+                
+                const data = await response.json();
+                console.log('Rentals response:', data);
+                
+                document.getElementById('debug-info').innerHTML = `
+                    <h3>Rentals Test:</h3>
+                    <p>Status: ${response.status}</p>
+                    <p>Success: ${response.ok}</p>
+                    <p>Data count: ${Array.isArray(data) ? data.length : 'Not array'}</p>
+                    <pre>${JSON.stringify(data, null, 2)}</pre>
+                `;
+            } catch (error) {
+                document.getElementById('debug-info').innerHTML = `
+                    <h3>Rentals Error:</h3>
+                    <p>${error.message}</p>
+                `;
+            }
+        }
+        
+        // Auto-test on load
+        window.onload = async function() {
+            checkToken();
+            await testLogin();
+            setTimeout(testRentals, 1000);
+        };
+    </script>
+</body>
+</html>

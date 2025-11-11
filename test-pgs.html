@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test PGs</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .pg-item { border: 1px solid #ccc; margin: 10px 0; padding: 10px; }
+        select, input { margin: 10px; padding: 5px; }
+    </style>
+</head>
+<body>
+    <h1>PG Listings Test</h1>
+    
+    <div>
+        <input type="text" id="searchInput" placeholder="Search...">
+        <select id="propertyTypeFilter">
+            <option value="">All Property Types</option>
+            <option value="pg">PG</option>
+            <option value="flat">Flat</option>
+            <option value="1rk">1RK</option>
+            <option value="2bhk">2BHK</option>
+        </select>
+        <button onclick="testFilters()">Test Filters</button>
+    </div>
+    
+    <div id="results"></div>
+    
+    <script>
+        let allPGs = [];
+        
+        async function loadPGs() {
+            try {
+                console.log('Loading PGs...');
+                const response = await fetch('http://localhost:3000/api/pgs');
+                console.log('Response status:', response.status);
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                
+                const data = await response.json();
+                console.log('Loaded PGs:', data.length, data);
+                
+                allPGs = data;
+                displayPGs(allPGs);
+                
+                // Show property types
+                const propertyTypes = [...new Set(allPGs.map(pg => pg.property_type))];
+                console.log('Available property types:', propertyTypes);
+                
+            } catch (error) {
+                console.error('Error loading PGs:', error);
+                document.getElementById('results').innerHTML = `<p style="color: red;">Error: ${error.message}</p>`;
+            }
+        }
+        
+        function displayPGs(pgs) {
+            const resultsDiv = document.getElementById('results');
+            resultsDiv.innerHTML = `
+                <h2>Results (${pgs.length} PGs)</h2>
+                ${pgs.map(pg => `
+                    <div class="pg-item">
+                        <h3>${pg.title}</h3>
+                        <p><strong>Type:</strong> ${pg.property_type}</p>
+                        <p><strong>Location:</strong> ${pg.location}</p>
+                        <p><strong>Rent:</strong> ₹${pg.rent_amount}</p>
+                    </div>
+                `).join('')}
+            `;
+        }
+        
+        function testFilters() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            const propertyType = document.getElementById('propertyTypeFilter').value;
+            
+            console.log('Testing filters:', { searchTerm, propertyType });
+            
+            const filtered = allPGs.filter(pg => {
+                const matchesSearch = !searchTerm || 
+                    pg.title.toLowerCase().includes(searchTerm) ||
+                    pg.location.toLowerCase().includes(searchTerm);
+                
+                const matchesPropertyType = !propertyType || pg.property_type === propertyType;
+                
+                console.log(`PG: ${pg.title}, Type: ${pg.property_type}, PropertyTypeMatch: ${matchesPropertyType}`);
+                
+                return matchesSearch && matchesPropertyType;
+            });
+            
+            console.log('Filtered results:', filtered.length);
+            displayPGs(filtered);
+        }
+        
+        // Load PGs when page loads
+        window.addEventListener('load', loadPGs);
+    </script>
+</body>
+</html>

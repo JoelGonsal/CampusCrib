@@ -1,0 +1,9 @@
+<svg width="400" height="300" xmlns="http://www.w3.org/2000/svg">
+  <rect width="400" height="300" fill="#f0f0f0"/>
+  <rect x="50" y="50" width="300" height="200" fill="#e0e0e0" stroke="#ccc" stroke-width="2"/>
+  <circle cx="120" cy="120" r="15" fill="#4A90E2"/>
+  <rect x="80" y="180" width="60" height="40" fill="#7ED321"/>
+  <rect x="160" y="180" width="60" height="40" fill="#F5A623"/>
+  <rect x="240" y="180" width="60" height="40" fill="#BD10E0"/>
+  <text x="200" y="250" text-anchor="middle" font-family="Arial" font-size="16" fill="#666">PG Sample Image</text>
+</svg>

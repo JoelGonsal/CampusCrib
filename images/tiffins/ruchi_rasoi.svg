@@ -1,0 +1,12 @@
+<svg width="400" height="300" xmlns="http://www.w3.org/2000/svg">
+  <rect width="400" height="300" fill="#FFF8DC"/>
+  <circle cx="200" cy="150" r="80" fill="#FF6347" stroke="#FF4500" stroke-width="3"/>
+  <circle cx="200" cy="150" r="60" fill="#FFE4B5"/>
+  <rect x="170" y="120" width="60" height="8" fill="#8B4513" rx="4"/>
+  <rect x="170" y="135" width="60" height="8" fill="#228B22" rx="4"/>
+  <rect x="170" y="150" width="60" height="8" fill="#FFD700" rx="4"/>
+  <rect x="170" y="165" width="60" height="8" fill="#FF6347" rx="4"/>
+  <rect x="170" y="180" width="60" height="8" fill="#32CD32" rx="4"/>
+  <text x="200" y="50" text-anchor="middle" font-family="Arial" font-size="20" font-weight="bold" fill="#FF4500">🍛</text>
+  <text x="200" y="280" text-anchor="middle" font-family="Arial" font-size="16" font-weight="bold" fill="#333">Ruchi's Rasoi</text>
+</svg>

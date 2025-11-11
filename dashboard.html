@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | CampusCrib</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="modern-style.css?v=2">
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              'sans': ['Inter', 'system-ui', 'sans-serif'],
+              'display': ['Poppins', 'system-ui', 'sans-serif'],
+            }
+          }
+        }
+      }
+    </script>
+    <style>
+        .editable:hover {
+            background-color: #f3f4f6;
+            cursor: pointer;
+            border-radius: 6px;
+            padding: 4px 8px;
+            transition: all 0.2s ease;
+        }
+        .editing .editable:hover {
+            background-color: transparent;
+            cursor: default;
+        }
+        .editing {
+            border-color: #3b82f6 !important;
+            background-color: #eff6ff !important;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+        .glass-card {
+            backdrop-filter: blur(20px);
+            background: rgba(255, 255, 255, 0.9);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+    </style>
+</head>
+<body class="font-sans min-h-screen">
+        <!-- Navbar -->
+        <nav class="navbar-modern sticky top-0 z-50">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="nav-container flex justify-between items-center h-18 py-2">
+                    <div class="flex items-center">
+                        <div class="logo-container">
+                            <div class="text-2xl font-display logo-text">
+                                CampusCrib
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="hidden md:block nav-links">
+                        <div class="flex items-center space-x-1">
+                            <a href="index.html" class="nav-link text-gray-600">
+                                <span>Home</span>
+                            </a>
+                            <a href="pgs.html" class="nav-link text-gray-600">
+                                <span>PGs/Flats</span>
+                            </a>
+                            <a href="tiffen.html" class="nav-link text-gray-600">
+                                <span>Tiffin</span>
+                            </a>
+                            <a href="roommate.html" class="nav-link text-gray-600">
+                                <span>Roommates</span>
+                            </a>
+                            <a href="contact.html" class="nav-link text-gray-600">
+                                <span>Contact</span>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-center gap-3">
+                        <span id="welcomeText" class="text-sm text-gray-600 font-medium">Welcome!</span>
+                        <button onclick="logout()" class="bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white px-4 py-2 rounded-lg font-medium transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105">
+                            Logout
+                        </button>
+            </div>
+        </nav>
+
+        <!-- Dashboard Content -->
+        <div class="min-h-screen bg-gradient-to-br from-indigo-900 via-purple-900 to-pink-800">
+            <!-- Hero Section -->
+            <div class="pt-8 pb-12 px-4 sm:px-6 lg:px-8">
+                <div class="max-w-7xl mx-auto">
+                    <!-- Welcome Header -->
+                    <div class="dashboard-header scroll-animate mb-8">
+                        <div class="text-center">
+                            <h1 class="welcome-text text-5xl md:text-6xl font-display font-bold mb-4">
+                                Welcome Back! 👋
+                            </h1>
+                            <p class="text-xl text-gray-300 max-w-2xl mx-auto">
+                                Manage your listings, track performance, and grow your business with CampusCrib
+                            </p>
+                        </div>
+                    </div>
+
+
+
+                    <!-- Quick Actions -->
+                    <div class="mb-12">
+                        <h2 class="text-3xl font-display font-bold text-white mb-8 text-center">Quick Actions</h2>
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; max-width: 1400px; margin: 0 auto 2rem auto;">
+                            <div style="background: white; border-radius: 20px; padding: 2rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1); cursor: pointer; text-align: center;" onclick="window.location.href='add-pg.html'">
+                                <div style="width: 60px; height: 60px; border-radius: 16px; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem auto;" class="bg-gradient-to-r from-blue-500 to-indigo-600">
+                                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2H5a2 2 0 00-2-2z"></path>
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5a2 2 0 012-2h4a2 2 0 012 2v6H8V5z"></path>
+                                    </svg>
+                                </div>
+                                <h3 class="text-xl font-semibold mb-2 text-gray-800">Post PG/Flat</h3>
+                                <p class="text-gray-600 mb-4">List your PG or flat for students looking for accommodation</p>
+                                <div class="inline-flex items-center text-blue-600 font-medium">
+                                    Add Listing
+                                    <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                                    </svg>
+                                </div>
+                            </div>
+                            
+                            <div style="background: white; border-radius: 20px; padding: 2rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1); cursor: pointer; text-align: center;" onclick="window.location.href='add-tiffin.html'">
+                                <div style="width: 60px; height: 60px; border-radius: 16px; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem auto;" class="bg-gradient-to-r from-green-500 to-emerald-600">
+                                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 100 4m0-4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 100 4m0-4v2m0-6V4"></path>
+                                    </svg>
+                                </div>
+                                <h3 class="text-xl font-semibold mb-2 text-gray-800">Post Tiffin Service</h3>
+                                <p class="text-gray-600 mb-4">Offer your homemade tiffin service to hungry students</p>
+                                <div class="inline-flex items-center text-green-600 font-medium">
+                                    Add Service
+                                    <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                                    </svg>
+                                </div>
+                            </div>
+                            
+                            <div style="background: white; border-radius: 20px; padding: 2rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1); cursor: pointer; text-align: center;" onclick="window.location.href='add-roommate.html'">
+                                <div style="width: 60px; height: 60px; border-radius: 16px; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem auto;" class="bg-gradient-to-r from-purple-500 to-pink-600">
+                                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                                    </svg>
+                                </div>
+                                <h3 class="text-xl font-semibold mb-2 text-gray-800">Find Roommate</h3>
+                                <p class="text-gray-600 mb-4">Post your roommate requirements and find compatible matches</p>
+                                <div class="inline-flex items-center text-purple-600 font-medium">
+                                    Post Request
+                                    <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                                    </svg>
+                                </div>
+                            </div>
+                            
+                            <div style="background: white; border-radius: 20px; padding: 2rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1); cursor: pointer; text-align: center;" onclick="window.location.href='my-subscriptions.html'">
+                                <div style="width: 60px; height: 60px; border-radius: 16px; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem auto;" class="bg-gradient-to-r from-orange-500 to-red-600">
+                                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"></path>
+                                    </svg>
+                                </div>
+                                <h3 class="text-xl font-semibold mb-2 text-gray-800">My Subscriptions</h3>
+                                <p class="text-gray-600 mb-4">View and manage your tiffin service subscriptions</p>
+                                <div class="inline-flex items-center text-orange-600 font-medium">
+                                    View Subscriptions
+                                    <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                                    </svg>
+                                </div>
+                            </div>
+                            
+                            <div style="background: white; border-radius: 20px; padding: 2rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1); cursor: pointer; text-align: center;" onclick="window.location.href='my-rentals.html'">
+                                <div style="width: 60px; height: 60px; border-radius: 16px; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem auto;" class="bg-gradient-to-r from-cyan-500 to-blue-600">
+                                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2H5a2 2 0 00-2-2z"></path>
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5a2 2 0 012-2h4a2 2 0 012 2v6H8V5z"></path>
+                                    </svg>
+                                </div>
+                                <h3 class="text-xl font-semibold mb-2 text-gray-800">My Rentals</h3>
+                                <p class="text-gray-600 mb-4">View and manage your PG rental applications</p>
+                                <div class="inline-flex items-center text-cyan-600 font-medium">
+                                    View Rentals
+                                    <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                                    </svg>
+                                </div>
+                            </div>
+                            
+                            <div style="background: white; border-radius: 20px; padding: 2rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1); cursor: pointer; text-align: center;" onclick="window.location.href='my-tenants.html'">
+                                <div style="width: 60px; height: 60px; border-radius: 16px; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem auto;" class="bg-gradient-to-r from-teal-500 to-green-600">
+                                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                                    </svg>
+                                </div>
+                                <h3 class="text-xl font-semibold mb-2 text-gray-800">My Tenants</h3>
+                                <p class="text-gray-600 mb-4">Manage your PG tenants and their information</p>
+                                <div class="inline-flex items-center text-teal-600 font-medium">
+                                    View Tenants
+                                    <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                                    </svg>
+                                </div>
+                            </div>
+                            
+                            <div style="background: white; border-radius: 20px; padding: 2rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1); cursor: pointer; text-align: center;" onclick="window.location.href='my-roommate-requests.html'">
+                                <div style="width: 60px; height: 60px; border-radius: 16px; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem auto;" class="bg-gradient-to-r from-indigo-500 to-purple-600">
+                                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z"></path>
+                                    </svg>
+                                </div>
+                                <h3 class="text-xl font-semibold mb-2 text-gray-800">My Roommate Requests</h3>
+                                <p class="text-gray-600 mb-4">Track your sent roommate requests and responses</p>
+                                <div class="inline-flex items-center text-indigo-600 font-medium">
+                                    View Requests
+                                    <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                                    </svg>
+                                </div>
+                            </div>
+                            
+                            <div style="background: white; border-radius: 20px; padding: 2rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1); cursor: pointer; text-align: center;" onclick="window.location.href='roommate-requests-received.html'">
+                                <div style="width: 60px; height: 60px; border-radius: 16px; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem auto;" class="bg-gradient-to-r from-pink-500 to-rose-600">
+                                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4"></path>
+                                    </svg>
+                                </div>
+                                <h3 class="text-xl font-semibold mb-2 text-gray-800">Requests Received</h3>
+                                <p class="text-gray-600 mb-4">Manage incoming roommate requests for your posts</p>
+                                <div class="inline-flex items-center text-pink-600 font-medium">
+                                    Manage Requests
+                                    <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- User's Listings -->
+                    <div class="bg-white/95 backdrop-blur-xl border border-white/20 p-8 rounded-2xl shadow-2xl">
+                        <div class="flex items-center justify-between mb-6">
+                            <h3 class="text-2xl font-display font-bold text-gray-900">Your Listings</h3>
+                            <div class="flex items-center gap-2 text-sm text-gray-500">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
+                                </svg>
+                                Last updated: Just now
+                            </div>
+                        </div>
+                        <div id="userListings" class="space-y-4">
+                            <div class="flex items-center justify-center py-12">
+                                <div class="text-center">
+                                    <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-indigo-600 mx-auto mb-4"></div>
+                                    <p class="text-gray-600 font-medium">Loading your listings...</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Delete Confirmation Modal -->
+    <div id="deleteModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm hidden z-50 flex items-center justify-center p-4">
+        <div class="bg-white/95 backdrop-blur-xl border border-white/20 p-8 rounded-2xl shadow-2xl max-w-md w-full transform transition-all duration-300 scale-95">
+            <div class="text-center mb-6">
+                <div class="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <svg class="w-8 h-8 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
+                    </svg>
+                </div>
+                <h3 class="text-xl font-display font-bold text-gray-900 mb-2">Confirm Delete</h3>
+                <p id="deleteMessage" class="text-gray-600"></p>
+            </div>
+            <div class="flex gap-3">
+                <button onclick="closeDeleteModal()" class="flex-1 px-6 py-3 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-xl font-medium transition-all duration-300">
+                    Cancel
+                </button>
+                <button id="confirmDeleteBtn" class="flex-1 px-6 py-3 bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white rounded-xl font-medium transition-all duration-300 shadow-lg hover:shadow-xl">
+                    Delete
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <script src="js/auth.js"></script>
+    <script src="js/dashboard.js"></script>
+    
+    <script>
+        // Add scroll animations
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add loaded class to body for animations
+            document.body.classList.add('loaded');
+            
+
+            
+            // Enhanced modal animations
+            const modal = document.getElementById('deleteModal');
+            const modalContent = modal.querySelector('div > div');
+            
+            window.showDeleteModal = function(message) {
+                document.getElementById('deleteMessage').textContent = message;
+                modal.classList.remove('hidden');
+                setTimeout(() => {
+                    modalContent.classList.remove('scale-95');
+                    modalContent.classList.add('scale-100');
+                }, 10);
+            };
+            
+            window.closeDeleteModal = function() {
+                modalContent.classList.remove('scale-100');
+                modalContent.classList.add('scale-95');
+                setTimeout(() => {
+                    modal.classList.add('hidden');
+                }, 200);
+            };
+        });
+        
+        // Add hover effects to action cards
+        document.querySelectorAll('.action-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-8px) scale(1.02)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+        
+
+    </script>
+</body>
+</html>

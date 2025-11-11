@@ -1,0 +1,11 @@
+<svg width="400" height="300" xmlns="http://www.w3.org/2000/svg">
+  <rect width="400" height="300" fill="#f8f9fa"/>
+  <rect x="50" y="50" width="300" height="200" fill="#e9ecef" stroke="#dee2e6" stroke-width="2" rx="8"/>
+  <circle cx="120" cy="120" r="12" fill="#6c757d"/>
+  <rect x="80" y="180" width="50" height="35" fill="#adb5bd" rx="4"/>
+  <rect x="150" y="180" width="50" height="35" fill="#adb5bd" rx="4"/>
+  <rect x="220" y="180" width="50" height="35" fill="#adb5bd" rx="4"/>
+  <rect x="290" y="180" width="50" height="35" fill="#adb5bd" rx="4"/>
+  <text x="200" y="140" text-anchor="middle" font-family="Arial" font-size="24" fill="#6c757d">🏠</text>
+  <text x="200" y="270" text-anchor="middle" font-family="Arial" font-size="14" fill="#6c757d">PG Image</text>
+</svg>

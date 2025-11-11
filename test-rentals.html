@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Rentals</title>
+    <link rel="stylesheet" href="modern-style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Test Rentals API</h1>
+        <button onclick="testRentalsAPI()">Test My Rentals</button>
+        <button onclick="testTenantsAPI()">Test My Tenants</button>
+        <div id="result"></div>
+    </div>
+
+    <script>
+        // Set a test token (you'll need to get this from login)
+        localStorage.setItem('token', 'test-token');
+
+        async function testRentalsAPI() {
+            try {
+                const token = localStorage.getItem('token');
+                console.log('Using token:', token);
+                
+                const response = await fetch('http://localhost:3000/api/my-rentals', {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                });
+                
+                console.log('Response status:', response.status);
+                const data = await response.json();
+                console.log('Response data:', data);
+                
+                document.getElementById('result').innerHTML = `
+                    <h3>Rentals API Response:</h3>
+                    <pre>${JSON.stringify(data, null, 2)}</pre>
+                `;
+            } catch (error) {
+                console.error('Error:', error);
+                document.getElementById('result').innerHTML = `
+                    <h3>Error:</h3>
+                    <p>${error.message}</p>
+                `;
+            }
+        }
+
+        async function testTenantsAPI() {
+            try {
+                const token = localStorage.getItem('token');
+                console.log('Using token:', token);
+                
+                const response = await fetch('http://localhost:3000/api/my-tenants', {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                });
+                
+                console.log('Response status:', response.status);
+                const data = await response.json();
+                console.log('Response data:', data);
+                
+                document.getElementById('result').innerHTML = `
+                    <h3>Tenants API Response:</h3>
+                    <pre>${JSON.stringify(data, null, 2)}</pre>
+                `;
+            } catch (error) {
+                console.error('Error:', error);
+                document.getElementById('result').innerHTML = `
+                    <h3>Error:</h3>
+                    <p>${error.message}</p>
+                `;
+            }
+        }
+    </script>
+</body>
+</html>

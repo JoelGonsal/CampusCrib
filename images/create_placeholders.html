@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Generate Placeholder Images</title>
+</head>
+<body>
+    <h2>PG Placeholder Images</h2>
+    <canvas id="canvas" width="400" height="300"></canvas>
+    
+    <script>
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+        
+        // Function to create placeholder image
+        function createPlaceholder(text, bgColor, textColor, filename) {
+            // Clear canvas
+            ctx.fillStyle = bgColor;
+            ctx.fillRect(0, 0, 400, 300);
+            
+            // Add text
+            ctx.fillStyle = textColor;
+            ctx.font = 'bold 24px Arial';
+            ctx.textAlign = 'center';
+            ctx.fillText(text, 200, 150);
+            
+            // Add subtitle
+            ctx.font = '16px Arial';
+            ctx.fillText('Sample PG Image', 200, 180);
+            
+            // Convert to blob and download
+            canvas.toBlob(function(blob) {
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = filename;
+                a.click();
+                URL.revokeObjectURL(url);
+            });
+        }
+        
+        // Create placeholder images
+        setTimeout(() => createPlaceholder('Skyview PG', '#4A90E2', 'white', 'skyview_pg_1.jpg'), 100);
+        setTimeout(() => createPlaceholder('Om Residency', '#7ED321', 'white', 'om_residency_1.jpg'), 200);
+        setTimeout(() => createPlaceholder('Trident Stay', '#F5A623', 'white', 'trident_stay_1.jpg'), 300);
+        setTimeout(() => createPlaceholder('BlueNest Flats', '#BD10E0', 'white', 'bluenest_flats_1.jpg'), 400);
+        setTimeout(() => createPlaceholder('Student Haven', '#B8E986', 'black', 'student_haven_1.jpg'), 500);
+    </script>
+</body>
+</html>

@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Post Roommate Request | CampusCrib</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="modern-style.css">
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              'sans': ['Inter', 'system-ui', 'sans-serif'],
+              'display': ['Poppins', 'system-ui', 'sans-serif'],
+            }
+          }
+        }
+      }
+    </script>
+</head>
+<body class="font-sans bg-gradient-to-br from-purple-50 via-white to-pink-50 min-h-screen">
+    <!-- Navbar -->
+    <nav class="navbar-modern sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="nav-container flex justify-between items-center h-18 py-2">
+                <div class="flex items-center">
+                    <div class="logo-container">
+                        <div class="text-2xl font-display logo-text">
+                            CampusCrib
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="hidden md:block nav-links">
+                    <div class="flex items-center space-x-1">
+                        <a href="index.html" class="nav-link text-gray-600">
+                            <span>Home</span>
+                        </a>
+                        <a href="pgs.html" class="nav-link text-gray-600">
+                            <span>PGs/Flats</span>
+                        </a>
+                        <a href="tiffen.html" class="nav-link text-gray-600">
+                            <span>Tiffin</span>
+                        </a>
+                        <a href="roommate.html" class="nav-link active text-purple-600">
+                            <span>Roommates</span>
+                        </a>
+                        <a href="contact.html" class="nav-link text-gray-600">
+                            <span>Contact</span>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="flex items-center gap-3" id="authButtons">
+                    <a href="dashboard.html" class="bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white px-4 py-2 rounded-lg font-medium transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105">
+                        Dashboard
+                    </a>
+                    <button onclick="logout()" class="bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white px-4 py-2 rounded-lg font-medium transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105">
+                        Logout
+                    </button>
+                </div>
+
+                <!-- Mobile menu button -->
+                <button class="mobile-menu-btn md:hidden">
+                    <svg class="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+        </nav>
+
+        <!-- Add Roommate Form -->
+        <div class="container mx-auto px-10 py-8">
+            <div class="max-w-4xl mx-auto">
+                <div class="bg-white bg-opacity-95 backdrop-blur-md p-8 rounded-xl shadow-lg">
+                    <h1 class="text-3xl font-bold text-gray-800 mb-6">Post Roommate Request</h1>
+                    
+                    <form id="addRoommateForm" class="space-y-6">
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Looking for Gender *</label>
+                                <select id="lookingForGender" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500">
+                                    <option value="">Select Gender</option>
+                                    <option value="male">Male</option>
+                                    <option value="female">Female</option>
+                                    <option value="any">Any Gender</option>
+                                </select>
+                            </div>
+                            
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Preferred Location *</label>
+                                <input type="text" id="preferredLocation" required 
+                                       placeholder="e.g., Andheri West, Vile Parle"
+                                       class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500">
+                            </div>
+                        </div>
+                        
+                        <div class="grid md:grid-cols-3 gap-6">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Minimum Budget (₹)</label>
+                                <input type="number" id="budgetMin" min="5000" 
+                                       placeholder="e.g., 8000"
+                                       class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500">
+                            </div>
+                            
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Maximum Budget (₹) *</label>
+                                <input type="number" id="budgetMax" required min="5000" 
+                                       placeholder="e.g., 15000"
+                                       class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500">
+                            </div>
+                            
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Sharing Preference</label>
+                                <select id="sharingPreference" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500">
+                                    <option value="any">Any</option>
+                                    <option value="2_sharing">2 Sharing</option>
+                                    <option value="3_sharing">3 Sharing</option>
+                                    <option value="4_sharing">4 Sharing</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">About Me *</label>
+                            <textarea id="aboutMe" rows="4" required
+                                      placeholder="Tell potential roommates about yourself, your habits, preferences, course, year, etc."
+                                      class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"></textarea>
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Lifestyle Preferences</label>
+                            <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+                                <label class="flex items-center">
+                                    <input type="checkbox" value="Non-smoker" class="lifestyle-checkbox mr-2">
+                                    <span class="text-sm">Non-smoker</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" value="Vegetarian" class="lifestyle-checkbox mr-2">
+                                    <span class="text-sm">Vegetarian</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" value="Early riser" class="lifestyle-checkbox mr-2">
+                                    <span class="text-sm">Early riser</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" value="Night owl" class="lifestyle-checkbox mr-2">
+                                    <span class="text-sm">Night owl</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" value="Clean & organized" class="lifestyle-checkbox mr-2">
+                                    <span class="text-sm">Clean & organized</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" value="Social" class="lifestyle-checkbox mr-2">
+                                    <span class="text-sm">Social</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" value="Quiet" class="lifestyle-checkbox mr-2">
+                                    <span class="text-sm">Quiet</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" value="Pet-friendly" class="lifestyle-checkbox mr-2">
+                                    <span class="text-sm">Pet-friendly</span>
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Contact Number *</label>
+                                <input type="tel" id="contactNumber" required 
+                                       placeholder="e.g., 9876543210"
+                                       class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500">
+                            </div>
+                            
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">WhatsApp Number</label>
+                                <input type="tel" id="whatsappNumber" 
+                                       placeholder="e.g., 9876543210"
+                                       class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500">
+                            </div>
+                        </div>
+                        
+                        <div class="flex gap-4">
+                            <button type="submit" class="flex-1 bg-purple-600 text-white py-3 px-6 rounded-lg hover:bg-purple-700 transition duration-300 font-medium">
+                                Post Roommate Request
+                            </button>
+                            <a href="dashboard.html" class="flex-1 bg-gray-600 text-white py-3 px-6 rounded-lg hover:bg-gray-700 transition duration-300 font-medium text-center">
+                                Cancel
+                            </a>
+                        </div>
+                    </form>
+                    
+                    <div id="message" class="mt-4 p-3 rounded hidden"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="js/auth.js"></script>
+    <script src="js/add-roommate.js"></script>
+</body>
+</html>

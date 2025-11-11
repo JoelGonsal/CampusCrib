@@ -1,0 +1,14 @@
+<svg width="400" height="300" xmlns="http://www.w3.org/2000/svg">
+  <rect width="400" height="300" fill="#FFFACD"/>
+  <circle cx="200" cy="150" r="90" fill="#F4A460" stroke="#D2691E" stroke-width="4"/>
+  <circle cx="160" cy="120" r="15" fill="#FFD700"/>
+  <circle cx="200" cy="110" r="15" fill="#FF6347"/>
+  <circle cx="240" cy="120" r="15" fill="#32CD32"/>
+  <circle cx="160" cy="150" r="15" fill="#FF69B4"/>
+  <circle cx="240" cy="150" r="15" fill="#8A2BE2"/>
+  <circle cx="160" cy="180" r="15" fill="#FF4500"/>
+  <circle cx="200" cy="190" r="15" fill="#228B22"/>
+  <circle cx="240" cy="180" r="15" fill="#4169E1"/>
+  <text x="200" y="50" text-anchor="middle" font-family="Arial" font-size="18" fill="#D2691E">🥘</text>
+  <text x="200" y="280" text-anchor="middle" font-family="Arial" font-size="16" font-weight="bold" fill="#333">Aunty's Kitchen</text>
+</svg>

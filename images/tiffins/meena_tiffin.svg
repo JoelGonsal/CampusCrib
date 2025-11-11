@@ -1,0 +1,12 @@
+<svg width="400" height="300" xmlns="http://www.w3.org/2000/svg">
+  <rect width="400" height="300" fill="#F0F8FF"/>
+  <rect x="80" y="80" width="240" height="140" fill="#fff" stroke="#4169E1" stroke-width="3" rx="10"/>
+  <circle cx="130" cy="130" r="20" fill="#FF6347"/>
+  <circle cx="200" cy="130" r="20" fill="#32CD32"/>
+  <circle cx="270" cy="130" r="20" fill="#FFD700"/>
+  <circle cx="130" cy="180" r="20" fill="#FF69B4"/>
+  <circle cx="200" cy="180" r="20" fill="#8A2BE2"/>
+  <circle cx="270" cy="180" r="20" fill="#FF4500"/>
+  <text x="200" y="50" text-anchor="middle" font-family="Arial" font-size="18" fill="#4169E1">🍽️</text>
+  <text x="200" y="280" text-anchor="middle" font-family="Arial" font-size="16" font-weight="bold" fill="#333">Meena Tiffin Service</text>
+</svg>

@@ -1,0 +1,18 @@
+<svg width="400" height="300" xmlns="http://www.w3.org/2000/svg">
+  <rect width="400" height="300" fill="#FFF8DC"/>
+  <rect x="50" y="60" width="300" height="200" fill="#F5A623" rx="10"/>
+  <rect x="70" y="80" width="260" height="160" fill="#fff" rx="5"/>
+  <rect x="90" y="100" width="40" height="30" fill="#F5A623" rx="3"/>
+  <rect x="150" y="100" width="40" height="30" fill="#F5A623" rx="3"/>
+  <rect x="210" y="100" width="40" height="30" fill="#F5A623" rx="3"/>
+  <rect x="270" y="100" width="40" height="30" fill="#F5A623" rx="3"/>
+  <rect x="90" y="150" width="40" height="30" fill="#F5A623" rx="3"/>
+  <rect x="150" y="150" width="40" height="30" fill="#F5A623" rx="3"/>
+  <rect x="210" y="150" width="40" height="30" fill="#F5A623" rx="3"/>
+  <rect x="270" y="150" width="40" height="30" fill="#F5A623" rx="3"/>
+  <polygon points="180,200 200,180 220,200" fill="#F5A623"/>
+  <polygon points="160,200 200,180 240,200" fill="#F5A623"/>
+  <polygon points="140,200 200,180 260,200" fill="#F5A623"/>
+  <text x="200" y="40" text-anchor="middle" font-family="Arial" font-size="18" font-weight="bold" fill="#F5A623">🔱</text>
+  <text x="200" y="280" text-anchor="middle" font-family="Arial" font-size="16" font-weight="bold" fill="#333">Trident Stay</text>
+</svg>

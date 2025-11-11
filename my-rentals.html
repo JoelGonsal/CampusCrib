@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Rentals - CampusCrib</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="modern-style.css?v=2">
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              'sans': ['Inter', 'system-ui', 'sans-serif'],
+              'display': ['Poppins', 'system-ui', 'sans-serif'],
+            }
+          }
+        }
+      }
+    </script>
+</head>
+<body class="font-sans bg-gradient-to-br from-blue-50 via-white to-purple-50 min-h-screen">
+    <!-- Navbar -->
+    <nav class="navbar-modern sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="nav-container flex justify-between items-center h-18 py-2">
+                <div class="flex items-center">
+                    <div class="logo-container">
+                        <div class="text-2xl font-display logo-text">
+                            CampusCrib
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="hidden md:block nav-links">
+                    <div class="flex items-center space-x-1">
+                        <a href="index.html" class="nav-link text-gray-600">
+                            <span>Home</span>
+                        </a>
+                        <a href="pgs.html" class="nav-link text-gray-600">
+                            <span>PGs/Flats</span>
+                        </a>
+                        <a href="tiffen.html" class="nav-link text-gray-600">
+                            <span>Tiffin</span>
+                        </a>
+                        <a href="roommate.html" class="nav-link text-gray-600">
+                            <span>Roommates</span>
+                        </a>
+                        <a href="my-rentals.html" class="nav-link active text-blue-600">
+                            <span>My Rentals</span>
+                        </a>
+                        <a href="my-tenants.html" class="nav-link text-gray-600">
+                            <span>My Tenants</span>
+                        </a>
+                        <a href="contact.html" class="nav-link text-gray-600">
+                            <span>Contact</span>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="auth-buttons" id="authButtons">
+                    <a href="dashboard.html" class="text-gray-600 hover:text-gray-800 px-3 py-2">Dashboard</a>
+                    <button onclick="logout()" class="bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white px-4 py-2 rounded-lg font-medium transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105">
+                        Logout
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="min-h-screen bg-gradient-to-br from-indigo-900 via-purple-900 to-pink-800">
+        <div class="pt-8 pb-12 px-4 sm:px-6 lg:px-8">
+            <div class="max-w-7xl mx-auto">
+                <!-- Header -->
+                <div class="text-center mb-12">
+                    <h1 class="text-5xl md:text-6xl font-display font-bold text-white mb-4">
+                        My PG Rentals 🏠
+                    </h1>
+                    <p class="text-xl text-gray-300 max-w-2xl mx-auto">
+                        Manage your PG rental applications and track your housing status
+                    </p>
+                </div>
+
+                <!-- Content Container -->
+                <div class="bg-white/95 backdrop-blur-xl border border-white/20 p-8 rounded-2xl shadow-2xl">
+                    <div class="flex items-center justify-between mb-6">
+                        <h2 class="text-2xl font-display font-bold text-gray-900">Your Rental Applications</h2>
+                        <div class="flex items-center gap-2 text-sm text-gray-500">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
+                            </svg>
+                            Last updated: Just now
+                        </div>
+                    </div>
+                    
+                    <!-- Loading State -->
+                    <div id="loadingState" class="flex items-center justify-center py-12">
+                        <div class="text-center">
+                            <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-indigo-600 mx-auto mb-4"></div>
+                            <p class="text-gray-600 font-medium">Loading your rentals...</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Rentals Container -->
+                    <div id="rentalsContainer" class="listings-grid" style="display: none;"></div>
+                    
+                    <!-- Empty State -->
+                    <div id="emptyState" class="text-center py-16" style="display: none;">
+                        <div class="w-24 h-24 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                            <svg class="w-12 h-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2H5a2 2 0 00-2-2z"></path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5a2 2 0 012-2h4a2 2 0 012 2v6H8V5z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-900 mb-2">No Rentals Yet</h3>
+                        <p class="text-gray-600 mb-6">You haven't applied for any PG rentals yet. Start browsing available PGs!</p>
+                        <a href="pgs.html" class="bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white px-6 py-3 rounded-lg font-medium transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105">
+                            Browse PGs
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/auth.js"></script>
+    <script src="js/my-rentals.js"></script>
+</body>
+</html>

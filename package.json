@@ -1,0 +1,25 @@
+{
+  "name": "campuscrib-frontend",
+  "version": "1.0.0",
+  "description": "CampusCrib Frontend - Student Housing & Services Platform",
+  "main": "serve.js",
+  "scripts": {
+    "start": "python3 -m http.server 8080",
+    "serve": "node serve.js",
+    "server": "cd server && npm start",
+    "server:dev": "cd server && npm run dev",
+    "setup": "cd server && npm install",
+    "install-all": "npm install && cd server && npm install && cd ..",
+    "dev": "echo 'Starting servers...' && (cd server && npm start &) && python3 -m http.server 8080"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  },
+  "devDependencies": {},
+  "keywords": ["student", "housing", "tiffin", "roommate", "nmims"],
+  "author": "Aksh Soni",
+  "license": "MIT",
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}
